@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA | Professional Photo Retouching</title>
+    <meta name="description" content="Portfolio of a professional photo editor specializing in high-end retouching, color grading, and manipulation.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-color: #0a0a0a;
+            --surface-color: #1a1a1a;
+            --text-primary: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --accent-color: #d4af37; /* Gold */
+            --accent-hover: #b5952f;
+            --padding-standard: 2rem;
+            --max-width: 1200px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            width: 90%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--padding-standard);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            background: transparent;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--accent-color);
+            z-index: -1;
+            transition: width 0.4s ease;
+        }
+
+        .btn:hover {
+            color: var(--bg-color);
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn-filled {
+            background: linear-gradient(135deg, #d4af37 0%, #b5952f 100%);
+            color: #000;
+            border: none;
+            box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.6);
+            padding: 10px 15px;
+            border-radius: 15px;
+        }
+
+        .btn-filled::before {
+            display: none;
+        }
+
+        .btn-filled:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px -10px rgba(212, 175, 55, 0.8);
+            background: linear-gradient(135deg, #ebd076 0%, #c4a439 100%);
+            color: #000;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 2px;
+            margin: 5px auto;
+            background-color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding-top: 60px;
+        }
+
+        .hero-content {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #d0d0d0;
+            font-weight: 300;
+        }
+
+        /* --- BEFORE/AFTER SLIDER --- */
+        .comparison-section {
+            padding: 5rem 0;
+            background-color: var(--bg-color);
+        }
+
+        .comparison-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            /* Height is handled by the aspect ratio of the image inside */
+            line-height: 0; /* Remove extra space */
+            user-select: none;
+        }
+
+        .comp-img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .img-after {
+            display: block;
+            width: 100%;
+        }
+
+        .img-before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%; /* Initial split */
+            border-right: 2px solid var(--accent-color);
+            z-index: 10;
+            overflow: hidden; /* Critical for masking */
+            background-color: var(--bg-color);
+        }
+        
+        /* Inner image of the 'before' div needs to mimic the full container size */
+        .img-before img {
+            height: 100%;
+            max-width: none; /* Allows it to overflow its parent */
+            /* width is set via JS to match container width */
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            z-index: 20;
+            transform: translate(-50%, -50%); 
+            top: 50%; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: ew-resize;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .slider-handle::before, .slider-handle::after {
+            content: '';
+            display: block;
+            border-left: 2px solid #000;
+            height: 12px;
+            margin: 0 2px;
+        }
+
+        .slider-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: var(--accent-color);
+            z-index: 15;
+            cursor: ew-resize;
+        }
+
+        .label {
+            position: absolute;
+            top: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            z-index: 20;
+            pointer-events: none;
+            line-height: normal;
+        }
+
+        .label-before { left: 20px; }
+        .label-after { right: 20px; }
+
+        /* --- PORTFOLIO GRID --- */
+        .portfolio {
+            padding: 5rem 0;
+            background-color: var(--surface-color);
+        }
+
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            color: var(--accent-color);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1 / 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay h3 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            transform: translateY(20px);
+            transition: 0.4s;
+        }
+
+        .gallery-item:hover .overlay h3 {
+            transform: translateY(0);
+        }
+
+        /* --- SERVICES --- */
+        .services {
+            padding: 5rem 0;
+            background-color: var(--bg-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--surface-color);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1.5rem;
+            fill: var(--accent-color);
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* --- CONTACT --- */
+        .contact {
+            padding: 5rem 0;
+            background-color: var(--surface-color);
+        }
+
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            justify-content: center;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--accent-color);
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-color);
+            border: 1px solid #333;
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* --- LIGHTBOX --- */
+        .lightbox {
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+        }
+        
+        .lightbox-content .comparison-container {
+            max-width: 100%;
+            max-height: 80vh;
+            /* Ensure container mimics image ratio */
+            display: flex; 
+            justify-content: center;
+        }
+        
+        /* Ensure images fit within lightbox vertically */
+        .lightbox-content .img-after {
+            max-height: 80vh;
+            width: auto;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 30;
+        }
+
+        .lightbox-close:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #050505;
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .social-links {
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            margin: 0 10px;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .social-link:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--surface-color);
+                width: 100%;
+                text-align: center;
+                padding: 2rem 0;
+                transition: 0.3s;
+                border-bottom: 1px solid #333;
+            }
+            .nav-links.active { right: 0; }
+            .hamburger { display: block; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">AAISHA YADAV<span>.</span></div>
+                <div class="nav-links" id="navLinks">
+                    <a href="#home">Home</a>
+                    <a href="#work">Portfolio</a>
+                    <a href="#services">Services</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Refining Reality</h1>
+            <p>High-End Retouching & Creative Photo Manipulation</p>
+            <a href="#work" class="btn-filled">View My Work</a>
+        </div>
+    </section>
+
+    <!-- FEATURED COMPARISON -->
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">The Difference</h2>
+            <p class="section-subtitle">Drag the slider to see the restoration process.</p>
+            
+            <div class="comparison-container" id="mainComparison">
+                <!-- After Image (Background) -->
+                <img src="Gemini_Generated_Image_jofjqzjofjqzjofj.png" alt="After" class="comp-img img-after">
+                
+                <!-- Before Image (Clipped) -->
+                <div class="comp-img img-before">
+                    <img src="Old2.jpeg" alt="Before"> 
+                </div>
+
+                <div class="label label-before">Before</div>
+                <div class="label label-after">After</div>
+
+                <div class="slider-line"></div>
+                <div class="slider-handle"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO GRID -->
+    <section id="work" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Selected Works</h2>
+            
+            <div class="gallery-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="portrait">Portrait</button>
+                <button class="filter-btn" data-filter="product">Product</button>
+                <button class="filter-btn" data-filter="creative">Creative</button>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item" data-category="portrait" onclick="openLightbox(this)" 
+                     data-before="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80&sat=-100&bri=-20&blur=2"
+                     data-after="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Portrait Retouching">
+                    <div class="overlay">
+                        <h3>Color Restoration</h3>
+                        <p class="btn">View</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item" data-category="creative" onclick="openLightbox(this)"
+                     data-before="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80&sat=-80&hue=180"
+                     data-after="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80">
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Creative Composition">
+                    <div class="overlay">
+                        <h3>Neon Edits</h3>
+                        <p class="btn">View</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item" data-category="product" onclick="openLightbox(this)"
+                     data-before="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80&con=-20&exp=-10"
+                     data-after="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Product Clean Up">
+                    <div class="overlay">
+                        <h3>Image Enhancement</h3>
+                        <p class="btn">View</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item" data-category="portrait" onclick="openLightbox(this)"
+                     data-before="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80&sharp=0&sat=-50"
+                     data-after="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Beauty Retouching">
+                    <div class="overlay">
+                        <h3>High-End Beauty</h3>
+                        <p class="btn">View</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item" data-category="creative" onclick="openLightbox(this)"
+                     data-before="./colorgradingold.png"
+                     data-after="./colorgradingnew.png">
+                    <img src="./colorgradingnew.png" alt="Landscape Color Grade">
+                    <div class="overlay">
+                        <h3>Color Grading</h3>
+                        <p class="btn">View</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item" data-category="product" onclick="openLightbox(this)"
+                     data-before="./Old.jpeg"
+                     data-after="./New.jpeg">
+                    <img src="./New.jpeg" alt="Manipulation of a cake image">
+                    <div class="overlay">
+                        <h3>Manipulation</h3>
+                        <p class="btn">View</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                    <h3>High-End Retouching</h3>
+                    <p>Skin smoothing, dodge & burn, and detail enhancement for beauty and fashion photography.</p>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24">
+                        <path d="M17.66 7.93L12 2.27 6.34 7.93c-3.12 3.12-3.12 8.19 0 11.31C7.9 20.8 9.95 21.58 12 21.58c2.05 0 4.1-.78 5.66-2.34 3.12-3.12 3.12-8.19 0-11.31zM12 19.59c-1.6 0-3.11-.62-4.24-1.76C6.62 16.69 6 15.19 6 13.59s.62-3.11 1.76-4.24L12 5.1l4.24 4.24c2.34 2.34 2.34 6.14 0 8.49-1.13 1.13-2.64 1.76-4.24 1.76z"/>
+                    </svg>
+                    <h3>Color Grading</h3>
+                    <p>Cinematic color correction to establish mood, tone, and consistency across a series.</p>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24">
+                        <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                    </svg>
+                    <h3>Photo Restoration</h3>
+                    <p>Bringing old, damaged, or faded photographs back to life with digital restoration techniques.</p>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24">
+                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                    </svg>
+                    <h3>Product Cleanup</h3>
+                    <p>Background removal, dust removal, and reflection management for e-commerce.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--text-primary);">Let's collaborate</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">Ready to take your images to the next level? Fill out the form or reach out directly.</p>
+                    
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <span>aaishayadav2607@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        <span>94xxxxxx09</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <span>Bangalore, India</span>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form onsubmit="event.preventDefault(); alert('Message sent! (Demo)');">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Project Details"></textarea>
+                        </div>
+                        <button type="submit" class="btn-filled">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-content" id="lightboxContent">
+            <!-- Slider injected via JS -->
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 3.8 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.8-3.8V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                </a>
+                <a href="#" class="social-link" aria-label="Twitter">
+                    <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg>
+                </a>
+            </div>
+            <p class="copyright">&copy; 2023 Lumina Studio. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- MOBILE MENU TOGGLE ---
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Animate hamburger to X
+            const bars = hamburger.querySelectorAll('.bar');
+            if(navLinks.classList.contains('active')) {
+                bars[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
+            } else {
+                bars[0].style.transform = 'none';
+                bars[1].style.opacity = '1';
+                bars[2].style.transform = 'none';
+            }
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const bars = hamburger.querySelectorAll('.bar');
+                bars[0].style.transform = 'none';
+                bars[1].style.opacity = '1';
+                bars[2].style.transform = 'none';
+            });
+        });
+
+        // --- FILTER GALLERY ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                        item.style.opacity = '0';
+                        setTimeout(() => item.style.opacity = '1', 10);
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // --- REUSABLE SLIDER LOGIC ---
+        function initComparisonSlider(container) {
+            const imgBeforeWrapper = container.querySelector('.img-before');
+            const imgBefore = imgBeforeWrapper.querySelector('img');
+            const handle = container.querySelector('.slider-handle');
+            const line = container.querySelector('.slider-line');
+            let isSliding = false;
+
+            // Sync Width Function: Ensures the inner 'before' image matches the full container width
+            // This prevents squishing when the wrapper div is resized.
+            function syncImageWidth() {
+                if(container.offsetWidth > 0) {
+                    imgBefore.style.width = container.offsetWidth + 'px';
+                }
+            }
+
+            // Init sync
+            syncImageWidth();
+            // Sync on window resize
+            window.addEventListener('resize', syncImageWidth);
+            // Sync when image loads (important for dynamic content)
+            imgBefore.onload = syncImageWidth;
+
+            // Mouse Events
+            container.addEventListener('mousedown', (e) => {
+                isSliding = true;
+                e.preventDefault(); // Prevent selection
+            });
+
+            window.addEventListener('mouseup', () => isSliding = false);
+            
+            window.addEventListener('mousemove', (e) => {
+                if (!isSliding) return;
+                moveSlide(e.clientX);
+            });
+
+            // Touch Events
+            container.addEventListener('touchstart', (e) => {
+                isSliding = true;
+            });
+
+            window.addEventListener('touchend', () => isSliding = false);
+
+            window.addEventListener('touchmove', (e) => {
+                if (!isSliding) return;
+                moveSlide(e.touches[0].clientX);
+            });
+
+            function moveSlide(clientX) {
+                const rect = container.getBoundingClientRect();
+                let x = clientX - rect.left;
+
+                // Constraints
+                if (x < 0) x = 0;
+                if (x > rect.width) x = rect.width;
+
+                const percentage = (x / rect.width) * 100;
+
+                imgBeforeWrapper.style.width = percentage + "%";
+                handle.style.left = percentage + "%";
+                line.style.left = percentage + "%";
+            }
+        }
+
+        // Initialize Main Slider on Page Load
+        window.onload = function() {
+            const mainSlider = document.getElementById('mainComparison');
+            // Ensure width is synced correctly on load
+            const innerImg = mainSlider.querySelector('.img-before img');
+            innerImg.style.width = mainSlider.offsetWidth + 'px';
+            
+            initComparisonSlider(mainSlider);
+        };
+
+        // --- LIGHTBOX WITH SLIDER ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxContent = document.getElementById('lightboxContent');
+
+        function openLightbox(element) {
+            // Get data
+            const beforeSrc = element.getAttribute('data-before');
+            const afterSrc = element.getAttribute('data-after');
+
+            // Inject HTML for Slider
+            // We give it a unique ID 'lightboxSlider'
+            lightboxContent.innerHTML = `
+                <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                <div class="comparison-container" id="lightboxSlider">
+                    <img src="${afterSrc}" alt="After" class="comp-img img-after">
+                    <div class="comp-img img-before">
+                        <img src="${beforeSrc}" alt="Before"> 
+                    </div>
+                    <div class="label label-before">Before</div>
+                    <div class="label label-after">After</div>
+                    <div class="slider-line" style="left: 50%;"></div>
+                    <div class="slider-handle" style="left: 50%;"></div>
+                </div>
+            `;
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Disable scroll
+
+            // Initialize slider logic for this new element
+            // We need a slight delay or check to ensure elements are in DOM and layout is calculated
+            requestAnimationFrame(() => {
+                const sliderContainer = document.getElementById('lightboxSlider');
+                initComparisonSlider(sliderContainer);
+            });
+        }
+
+        function closeLightbox(e) {
+            // Close if clicking directly on the lightbox overlay (backdrop) or if called without event
+            if (!e || e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Enable scroll
+                
+                // Optional: Clear content to stop video/large images
+                setTimeout(() => lightboxContent.innerHTML = '', 300);
+            }
+        }
+    </script>
+</body>
+</html>
